@@ -51,6 +51,14 @@ const EmailList = () => {
         <Section Icon={LocalOfferIcon} title="Promotions " color="green" />
       </div>
       <div className="emailList__list">
+      {emails.map(({id,data:{to, subject,message,timestamp}})=>(
+      <EmailRow
+      title={id}
+      subject={id}
+      description= {subject}
+      time={new Date (timestamp?.seconds*1000).toUTCString()}
+      />
+        ))}
       <EmailRow
       title="Indeed"
       subject="Test"
@@ -63,6 +71,20 @@ const EmailList = () => {
       description= "This is a test"
       time="1a.m"
       />
+      <EmailRow
+      title="Indeed"
+      subject="Test"
+      description= "This is a test"
+      time="1a.m"
+      />
+      <EmailRow
+      title="Indeed"
+      subject="Test"
+      description= "This is a test"
+      time="1a.m"
+      />
+        
+    
       </div>
     </div>
   );
