@@ -24,17 +24,17 @@
   border-radius: 5px;
 }
 .header__middle > .MuiSvgIcon-root {
-  color: grey;
+  color: #474747;
 }
 
 .header__middle > input {
   border: none;
   width: 100%;
-  padding: 8px;
+  padding: 5px;
   outline: 0;
   font-size: medium;
   background-color: transparent;
-  border-radius: 40px;
+  border-radius: 60px;
 }
 
 .header__right {

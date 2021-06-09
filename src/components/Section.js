@@ -10,8 +10,8 @@ const Section = ({ Icon, title, color, selected }) => {
         color: `${selected && color}`,
       }}
     >
-    <Icon/>
-    <h4>{title}</h4>
+      <Icon />
+      <h4>{title}</h4>
     </div>
   );
 };

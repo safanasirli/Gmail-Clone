@@ -1,30 +1,40 @@
-'strict mode'
-import React from 'react';
-import {Auth,provider} from './firebase';
-import './Login.css'
+import React from "react";
+import { useDispatch } from "react-redux";
+import { auth, provider } from "./firebase";
+import { Button } from "@material-ui/core";
+import { login } from "../features/userSlice";
+import "./Login.css";
 
-const Login=()=>{
-    const dispatch=useDispatch();
+const Login = () => {
+  const dispatch = useDispatch();
 
-    const signIn =()=>{
-        Auth.signInWithPopup(provider)
-        .then(({user})=>{
-            dispatch(login({
-                displayName:user.displayName,
-                email:user.email,
-                photoUrl:user.photoUrl
-            }))
-        })
-        .catch(error=>alert(error.message))
-    }
-    return(
-        <div className="login">
-        <div className="login_container">
-        <img src="https://image.similarpng.com/very-thumbnail/2020/12/Gmail-logo-design-on-transparent-background-PNG.png" alt=""/>
-        <Button>Login</Button>
-        </div>
-        </div>
-    )
-}
+  const signIn = () => {
+    auth
+      .signInWithPopup(provider)
+      .then((user) => {
+        dispatch(
+          login({
+            displayName: user.displayName,
+            email: user.email,
+            photoUrl: user.photoURL,
+          })
+        );
+      })
+      .catch((error) => alert(error.message));
+  };
+  return (
+    <div className="login">
+      <div className="login_container">
+        <img
+          src="https://static.dezeen.com/uploads/2020/10/gmail-google-logo-rebrand-workspace-design_dezeen_2364_col_0.jpg"
+          alt=""
+        />
+        <Button color="primary" variant="contained" onClick={signIn}>
+          Login
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export default Login;

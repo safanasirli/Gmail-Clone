@@ -1,12 +1,12 @@
 import React from "react";
-import "./SendMail.css";
-import CloseIcon from "@material-ui/icons/Close";
-import { Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import firebase from "firebase";
+import CloseIcon from "@material-ui/icons/Close";
+import { Button } from "@material-ui/core";
 import { closeSendMessage } from "../features/mailSlice";
 import { db } from "./firebase";
-import firebase from "firebase";
+import "./SendMail.css";
 
 const SendMail = () => {
   const {
@@ -16,12 +16,11 @@ const SendMail = () => {
   } = useForm();
   const dispatch = useDispatch();
 
-  const onSubmit = (formData) => {
-    console.log(formData);
+  const onSubmit = (data) => {
     db.collection("emails").add({
-      to: formData.to,
-      subject: formData.subject,
-      message: formData.message,
+      to: data.to,
+      subject: data.subject,
+      message: data.message,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     dispatch(closeSendMessage());
@@ -36,14 +35,14 @@ const SendMail = () => {
           onClick={() => dispatch(closeSendMessage())}
         />
       </div>
-      <form onsubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name="to"
           placeholder="To"
           type="email"
           {...register("to", { required: true })}
         />
-        {errors.to && <p className="sendMail_errors">To is required</p>}
+        {errors.to && <p className="sendMail__error">required</p>}
         <input
           name="subject"
           placeholder="Subject"
@@ -55,7 +54,6 @@ const SendMail = () => {
         )}
         <input
           name="message"
-          placeholder="Message..."
           className="sendMail__message"
           type="text"
           {...register("message", { required: true })}
