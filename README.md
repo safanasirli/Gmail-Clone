@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This project has UI of the Gmail. In this website users can compose a new mail. The mail data is stored in the Firebase. The state of the app is maintained by Redux. Gmail Clone was built using React.js, React-router, Redux, and Firebase (Authentication and Database).
+
 
 ## Available Scripts
 
